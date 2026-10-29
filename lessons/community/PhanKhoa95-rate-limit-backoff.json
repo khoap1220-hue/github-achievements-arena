@@ -1,0 +1,11 @@
+{
+  "id": "LESSON-PhanKhoa95-rate-limit-backoff",
+  "author": "PhanKhoa95",
+  "title": "Always Add Random Jitter to Exponential Backoff on HTTP 429",
+  "category": "API Resilience & Rate Limits",
+  "language": "Python / TypeScript",
+  "problem": "When multiple worker threads hit an HTTP 429 rate limit simultaneously and sleep for fixed 2^n seconds, they wake up at the exact same millisecond and trigger a thundering herd failure.",
+  "solution": "Add uniform random jitter (e.g. + random.uniform(0, 0.5)) to the exponential backoff delay and always respect the upstream Retry-After header first.",
+  "code_example": "delay = min(max_delay, base * (2 ** attempt)) + random.uniform(0, 0.5)\ntime.sleep(delay)",
+  "created_at": "2026-10-29"
+}
